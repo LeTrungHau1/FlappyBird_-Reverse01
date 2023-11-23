@@ -10,20 +10,16 @@ public class PlusPoint : MonoBehaviour
     public float Point = 0f;
     public TextMeshProUGUI txthighestpoint;
     public TextMeshProUGUI txtpoint;
-    //public LayerMask birdLayer;
-    //public float boxX;
-    //public float boxY;
-    //private bool hasCollidedWithBird=false;
-    
-   
     private void Start()
     {
+       
        //ResetHeghstPoint();
         HighestPoint = PlayerPrefs.GetFloat("highestpoint", 0f);
     }
     private void Update()
     {
-       txthighestpoint.text = HighestPoint.ToString();
+        HighestPoint = PlayerPrefs.GetFloat("highestpoint", 0f);
+        txthighestpoint.text = HighestPoint.ToString();
         txtpoint.text = Point.ToString();
     }
     private void FixedUpdate()
@@ -35,38 +31,19 @@ public class PlusPoint : MonoBehaviour
             PlayerPrefs.Save();
         }
        
+       
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Bird"))
         {
-            Point++;
+            Point += 99 + (int)((Point<1000 ? Point: 999 )* ( 2 - ObjectPooling.Pooling.timeduration));
         }
     }
     public void ResetHeghstPoint()
     {
         PlayerPrefs.SetFloat("highestpoint", 0);
         PlayerPrefs.Save();
+        Time.timeScale = 0;
     }
-    //public void checkvacham()
-    //{
-
-    //    Collider2D[] birdCollider = Physics2D.OverlapBoxAll(transform.position, new Vector2(boxX, boxY), birdLayer);
-    //    foreach (Collider2D collider in birdCollider)
-    //    {
-    //        if (collider.CompareTag("Bird")&& !hasCollidedWithBird)
-    //        {
-    //            // Có va chạm với đối tượng có tag là "Bird"
-    //            Point++;
-    //            Debug.Log("va chạm bird: " + Point);
-    //            hasCollidedWithBird= true;
-    //        }
-    //    }
-    //    hasCollidedWithBird = false;
-    //}
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawWireCube(transform.position, new Vector2(boxX, boxY));
-    //}
 }

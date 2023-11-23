@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ObjectPooling : MonoBehaviour
 {
+    public static ObjectPooling Pooling {  get; private set; }
     public GameObject objectPrefab;
     public int poolSize = 10;
     private float countdown;
@@ -14,7 +15,7 @@ public class ObjectPooling : MonoBehaviour
 
     void Start()
     {
-       
+        Pooling = this;
         InitializeObjectPool();
         enabletuber = false;
     }

@@ -9,15 +9,17 @@ public class PlayerCtroller : MonoBehaviour
     public ObjectPooling instBird;
     public float SpeedUp;
     public float StarRB;
-
+    public static bool Activetimescale;
 
 
 
     void Start()
     {
+        Activetimescale = this;
         //StarRB = (float)rb.gravityScale;
         rb = gameObject .GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
+        Activetimescale = true;
     }
 
 
@@ -26,7 +28,10 @@ public class PlayerCtroller : MonoBehaviour
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             rb.gravityScale = StarRB;
-            Time.timeScale = 1;
+            if( Activetimescale==true ) 
+            {
+                Time.timeScale = 1;
+            }          
             instBird.enabletuber = true;
             MovePlayer();
            
