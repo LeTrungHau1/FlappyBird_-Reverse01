@@ -94,10 +94,12 @@ public class LossGameManager : MonoBehaviour
     }
     public void BackToMenu()
     {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
-        Application.Quit();
+      
+        GameManager.Instance.RestartGame();
+    }
+    public void OnSetting()
+    {
 
+        UiManager.Instance.ActiveSettingPanel(true);
     }
 }
