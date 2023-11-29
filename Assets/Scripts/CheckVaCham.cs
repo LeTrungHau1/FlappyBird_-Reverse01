@@ -23,21 +23,22 @@ public class CheckVaCham : MonoBehaviour
     {
         if (collision.CompareTag("Bird"))
         {
-            //Time.timeScale = 0f;
-            //SceneManager.LoadScene("SceneGame");
+           
+           
             lossGameManager.LossGamePannel.SetActive(true);
             if(pluspoint.Point >= PlayerPrefs.GetFloat("highestpoint"))
             {
                 lossGameManager.LossUpTopPannel.SetActive(true);
                 lossGameManager.LossDownTopPannel.SetActive(false);
-                print("tren top");
+                //print("tren top");
             }
             else
             {
                 lossGameManager.LossUpTopPannel.SetActive(false);
                 lossGameManager.LossDownTopPannel.SetActive(true);
-                print("duoi top");
+                //print("duoi top");
             }
+           
         }
     }
 }

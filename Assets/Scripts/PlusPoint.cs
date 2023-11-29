@@ -38,6 +38,7 @@ public class PlusPoint : MonoBehaviour
         if(collision.CompareTag("Bird"))
         {
             Point += 99 + (int)((Point<1000 ? Point: 999 )* ( 2 - ObjectPooling.Pooling.timeduration));
+            AudioManager.Instance.PlaySE("BirdPoint", 0f);
         }
     }
     public void ResetHeghstPoint()

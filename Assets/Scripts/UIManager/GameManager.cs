@@ -63,4 +63,10 @@ public class GameManager : BaseManager<GameManager>
     {
         SceneManager.LoadScene(sceneName);
     }
+
+
+    public void Audiobtn()
+    {
+        AudioManager.Instance.PlaySE("Button2", 0f);
+    }
 }

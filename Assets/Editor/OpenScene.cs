@@ -6,7 +6,8 @@ public class OpenScene : EditorWindow
 {
     private static string _scenePath = "Assets/Scenes/{0}.unity";
 
-    [MenuItem("OpenScene/SceneMenu", false, 1)]
+    
+    [MenuItem("OpenScene/Menu", false, 1)]
     public static void GameScene()
     {
 
@@ -15,7 +16,7 @@ public class OpenScene : EditorWindow
         EditorSceneManager.OpenScene
            (string.Format(_scenePath, "SceneMenu"), OpenSceneMode.Single);
     }
-    [MenuItem("OpenScene/SceneGame", false, 1)]
+   [MenuItem("OpenScene/PlayGame", false, 2)]
     public static void Demo()
     {
         EditorSceneManager.SaveScene(SceneManager.GetActiveScene());

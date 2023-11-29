@@ -29,27 +29,15 @@ public class InstBird : MonoBehaviour
         {
             countdown -= Time.deltaTime; //dếm ngược thời gian
             if (countdown < 0)
-            {
-                //GameObject bullet = GetPooledBullet();
-                ////bullet.SetActive(true);
-                //GameObject tube = Instantiate(bullet, new Vector3(4, Random.Range(-4f, 3.2f), 0), Quaternion.identity); 
-
-
-                //GameObject tube = Instantiate(GetPooledBullet(), new Vector3(4, Random.Range(-4f, 3.2f), 0), Quaternion.identity);
-                //tube.transform.SetParent(gameObject.transform);
-
-                //GetPooledBullet();
-
+            {            
                 GameObject bullet = GetPooledBullet();
                 StartCoroutine(DeactivateBullet(bullet));
-
-
                 countdown = timeduration;
                 if (timeduration > 1.5f) 
                 {
                     timeduration -= 0.01f;
                 }
-                //StartCoroutine(DeactivateBullet(tube));
+               
             }
         }
     }

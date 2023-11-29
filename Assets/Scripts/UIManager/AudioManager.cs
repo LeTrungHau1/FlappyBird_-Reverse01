@@ -12,6 +12,7 @@ public class AudioManager : BaseManager<AudioManager>
 
     //is the bgm fading out
     private bool isFadeOut = false;
+    private float savevalume;
 
     //oudio sources for BGM and se
     public AudioSource AttachBGMSource;
@@ -46,10 +47,16 @@ public class AudioManager : BaseManager<AudioManager>
     }
     private void Start()
     {
-        AttachBGMSource.volume = PlayerPrefs.GetFloat(CONST.BGM_VOLUME_KEY, CONST.BMG_VOLUME_DEFAULT);
-        AttachSESource.volume = PlayerPrefs.GetFloat(CONST.SE_VOLUME_KEY, CONST.SE_VOLUME_DEFAULT);
+       
+       
     }
 
+    private void FixedUpdate()
+    {
+        AttachBGMSource.volume = PlayerPrefs.GetFloat(CONST.BGM_VOLUME_KEY, CONST.BMG_VOLUME_DEFAULT);
+        AttachSESource.volume = PlayerPrefs.GetFloat(CONST.SE_VOLUME_KEY, CONST.SE_VOLUME_DEFAULT);
+        savevalume = PlayerPrefs.GetFloat(CONST.BGM_VOLUME_KEY, CONST.BMG_VOLUME_DEFAULT);
+    }
     public void PlaySE(string seName, float delay = 0.0f)//truyen ten va delay
     {
         if (!seDic.ContainsKey(seName))
@@ -60,6 +67,34 @@ public class AudioManager : BaseManager<AudioManager>
         nextSEName = seName;
         Invoke("DelayPlaySE", delay);
     }
+    public void PlaySEEdit(string seName, float volume = 0.0f)//truyen ten va delay
+    {
+        if (!seDic.ContainsKey(seName))
+        {
+            Debug.LogError(seName + " there is no SE named");
+            return;
+        }
+        nextSEName = seName;
+        AttachSESource.PlayOneShot(seDic[nextSEName] as AudioClip , volume);
+    }
+
+    public void PlayBGMEdit(float volume = 0.1f, bool OnValume = true)
+    {      
+       
+        if (OnValume==true)
+        {
+            AttachBGMSource.volume = volume;
+           
+        }
+       else
+       {          
+            AttachBGMSource.volume = savevalume;
+           
+        }
+       
+    }
+
+
 
     private void DelayPlaySE()
     {

@@ -10,7 +10,7 @@ public class PlayerCtroller : MonoBehaviour
     public float SpeedUp;
     public float StarRB;
     public static bool Activetimescale;
-
+    public LossGameManager lossgameManager;
 
 
     void Start()
@@ -34,11 +34,17 @@ public class PlayerCtroller : MonoBehaviour
             }          
             instBird.enabletuber = true;
             MovePlayer();
+            if(!lossgameManager.LossGamePannel.activeSelf)
+            {
+                AudioManager.Instance.PlaySE("Pencil", 0f);
+            }
            
+
         }
     }
     private void MovePlayer()
     {
+        
         rb.velocity = Vector3.up * SpeedUp;
     }
 

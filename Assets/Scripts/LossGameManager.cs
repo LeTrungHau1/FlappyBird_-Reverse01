@@ -60,6 +60,8 @@ public class LossGameManager : MonoBehaviour
     {
         if(LossGamePannel.activeSelf)
         {
+            AudioManager.Instance.PlayBGMEdit(0.4f , true);
+            AudioManager.Instance.PlaySEEdit("Win", 0.1f);
             PlayerCtroller.Activetimescale = false;
             Pencil.SetActive(false);
             PointTopPannel.SetActive(false);
@@ -69,7 +71,11 @@ public class LossGameManager : MonoBehaviour
             txtpoint.text = pointPlus.Point.ToString();
 
         }
-        if(boolactive == true)
+        else
+        {          
+            AudioManager.Instance.PlayBGMEdit(0.4f, false);
+        }
+        if (boolactive == true)
         {
             timeActiveImgGroup -= Time.deltaTime;
             if (timeActiveImgGroup < 0)
@@ -101,5 +107,10 @@ public class LossGameManager : MonoBehaviour
     {
 
         UiManager.Instance.ActiveSettingPanel(true);
+    }
+
+    public void PlayAudioBTN()
+    {
+        AudioManager.Instance.PlaySE("Button2", 0f);
     }
 }
